@@ -1,15 +1,11 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import Loading from './Loading';
-import { createUser } from '../services/userApi';
-import {
-  LoginContainer,
-  FormContainer,
-  Input,
-  ButtonContainer,
-  LoginButton,
-  RegisterButton,
-} from '../styles/Login.styles';
+import Loading from '../components/Loading';
+import { loginUser } from '../services/authService';
+import { LoginContainer, FormContainer, Input } from '../styles/Login.styles';
+import { ButtonContainer, LoginButton, RegisterButton } from '../styles/Button.styles';
+import { ClickableText } from '../styles/Message.styles';
+
 
 function Login() {
   const [email, setEmail] = React.useState('');
@@ -19,9 +15,15 @@ function Login() {
 
   const handleSubmit = async () => {
     setLoading(true);
-    await createUser({ email, password });
-    setLoading(false);
-    setRedirect(true);
+    try {
+      await loginUser(email, password);
+      setLoading(false);
+      setRedirect('/home');
+    } catch (error) {
+      console.error('Erro:', error.message);
+      setLoading(false);
+      // Lógica para lidar com erros, como exibir uma mensagem de erro para o usuário
+    }
   };
 
   const handleRedirect = (path) => {
@@ -44,6 +46,7 @@ function Login() {
         value={password}
         onChange={({ target }) => setPassword(target.value)}
       />
+      <ClickableText onClick={() => handleRedirect('/recovery-code')}> Esqueci minha senha </ClickableText>
       <ButtonContainer>
         <LoginButton type="button" onClick={handleSubmit}>
           Entrar
