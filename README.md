@@ -40,7 +40,13 @@ Open your web browser and visit http://localhost:5173 to view the application.
 - **django-rest-framework:** A powerful and flexible toolkit for building Web APIs in Django.<br>
 - **PyFlakes:** A static analysis tool for Python that checks for errors without executing the code.<br>
 
-## How to Run
+## How to Run 
+
+### Locally
+
+ ```bash
+ python manage.py runserver 0.0.0.0:5000
+```
 
 To run the application, make sure you have Docker and Docker Compose installed on your machine. Then, execute the following command in the project root:
 
