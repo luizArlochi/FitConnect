@@ -4,10 +4,8 @@
 This is an application that combines a frontend developed in ReactJS and a backend developed in Django, both running in Docker containers.
 
 ## Requirements
-- **Docker:**
-- **Docker Compose:**
-- ## Docker Compose Configuration
-The frontend is developed in ReactJS and uses Vite as the development environment. Below are the main details from the package.json file:
+- **Docker**
+- **Docker Compose**
 
 ### Technologies used in Frontend
 
